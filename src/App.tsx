@@ -19,7 +19,7 @@ function App() {
                   <h1 className='text-4xl font-semibold text-white' style={{textShadow: '0 0 20px rgba(56, 189, 248, 0.3)'}}>
                     Coin Swap
                   </h1>
-                  <p className='text-xs text-gray-400 mt-1 ml-3'>Decentralized coin swap</p>
+                  <p className='text-xs text-gray-400 mt-1 ml-3'>Decentralized coin swap for Solana Network</p>
                 </div>
               </div>
               <div className='flex gap-3'>
