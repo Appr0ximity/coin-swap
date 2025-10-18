@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { SwapInputCard } from "../ui/SwapInputCard"
-import axios from "axios"
 import { SearchTokenCard } from "../ui/SearchTokenCard"
 
 export const Swap = ()=>{

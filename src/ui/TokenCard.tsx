@@ -14,8 +14,8 @@ export const TokenCard = ({symbol, name, uri, price, priceChange}: {
             </div>
         </div>
         <div className="text-end">
-            <p className="text-white text-lg font-medium font-sans self-end">${price.toFixed(2)}</p>
-            <p className={`${priceChange >= 0 ? 'text-green-500' : 'text-red-500'} text-sm`}>{priceChange>0 && "+"}{priceChange.toFixed(2)}%</p>
+            <p className="text-white text-lg font-medium font-sans self-end">${price?.toFixed(2)}</p>
+            <p className={`${priceChange >= 0 ? 'text-green-500' : 'text-red-500'} text-sm`}>{priceChange>0 && "+"}{priceChange?.toFixed(2)}%</p>
         </div>
 
     </div>

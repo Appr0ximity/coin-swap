@@ -19,7 +19,7 @@ export const SearchTokenCard = ()=>{
     return <div className="bg-[#141417] min-w-[30vw]">
         <input onChange={e=> setQuery(e.target.value)} type="text" placeholder="Search for the required token" className="text-white px-10 py-4 min-w-[30vw] text-2xl"/>
         {tokens.map((token)=>{
-            return <TokenCard name={token.name} symbol={token.symbol} uri={token.icon} price={token.usdPrice} priceChange={token.stats24h.priceChange}></TokenCard>
+            return <TokenCard name={token.name} symbol={token.symbol} uri={token.icon} price={token.usdPrice} priceChange={token.stats24h?.priceChange}></TokenCard>
         })}
     </div>
 }
