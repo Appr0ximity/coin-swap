@@ -12,7 +12,7 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={[]}>
         <WalletModalProvider>
-          <div className='sticky top-0 z-50 w-full py-3 border-b border-gray-800 bg-black/95 backdrop-blur'>
+          <div className='sticky top-0 z-50 w-full py-3 bg-black/95 backdrop-blur'>
             <div className='max-w-7xl mx-auto flex h-16 items-center justify-between px-8'>
               <div className='flex items-center gap-2'>
                 <div className='flex flex-col'>
