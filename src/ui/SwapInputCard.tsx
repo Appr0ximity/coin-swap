@@ -12,7 +12,7 @@ export const SwapInputCard = ({fromOrTo}: {fromOrTo: "FROM"|"TO"})=>{
         <div className="flex justify-between items-baseline">
             <div className="flex text-4xl items-baseline">
                 <input
-                    value={token.amount || ""} 
+                    value={token.amount} 
                     onChange={async (e)=> {
                         const inputAmount = parseFloat(e.target.value) || 0;
                         setToken({
@@ -21,7 +21,6 @@ export const SwapInputCard = ({fromOrTo}: {fromOrTo: "FROM"|"TO"})=>{
                         })
                         
                         if (inputAmount > 0 && token.id && otherToken.id && token.decimals) {
-                            // Convert to smallest unit (e.g., 1 SOL = 1000000000 lamports)
                             const amountInSmallestUnit = Math.floor(inputAmount * Math.pow(10, token.decimals));
                             
                             try {
