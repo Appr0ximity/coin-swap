@@ -7,7 +7,8 @@ export interface Token {
     uri: string,
     price: number,
     priceChange: number,
-    amount?: number
+    amount: number,
+    decimals: number
 }
 
 export const searchingAtom = atom<Boolean>(false)
@@ -19,7 +20,8 @@ export const fromTokenAtom = atom<Token>({
     uri: "",
     price: 0,
     priceChange: 0,
-    amount: 0
+    amount: 0,
+    decimals: 0
 })
 export const toTokenAtom = atom<Token>({
     id: "",
@@ -28,6 +30,7 @@ export const toTokenAtom = atom<Token>({
     uri: "",
     price: 0,
     priceChange: 0,
-    amount: 0
+    amount: 0,
+    decimals: 0
 })
 export const allTokensAtom = atom<Token[]>([])

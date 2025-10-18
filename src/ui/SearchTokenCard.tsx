@@ -23,13 +23,14 @@ export const SearchTokenCard = ({fromOrTo} : {fromOrTo: "FROM" | "TO"})=>{
 
     const handleTokenSelect = (token: any) => {
         const selectedToken = {
-            id: token.id || token.address,
+            id: token.id,
             name: token.name,
             symbol: token.symbol,
-            uri: token.logoURI || token.image || "",
-            price: token.price || 0,
-            priceChange: token.priceChange24h || 0,
-            amount: 0
+            uri: token.icon,
+            price: token.usdPrice,
+            priceChange: token.stats24h.priceChange,
+            amount: 0,
+            decimals: token.decimals
         }
         
         if (fromOrTo === "FROM") {
