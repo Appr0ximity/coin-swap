@@ -11,7 +11,7 @@ export interface Token {
     decimals: number
 }
 
-export const searchingAtom = atom<Boolean>(false)
+export const searchingAtom = atom<boolean>(false)
 
 export const fromTokenAtom = atom<Token>({
     id: "",

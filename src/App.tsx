@@ -6,7 +6,7 @@ import { Swap } from "./components/Swap";
 
 function App() {
 
-  let endpoint = clusterApiUrl('devnet')
+  let endpoint = clusterApiUrl('mainnet-beta')
 
   return <div className="min-h-screen bg-black">
     <ConnectionProvider endpoint={endpoint}>
