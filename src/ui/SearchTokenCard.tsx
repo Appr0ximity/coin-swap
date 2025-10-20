@@ -41,21 +41,23 @@ export const SearchTokenCard = ({fromOrTo} : {fromOrTo: "FROM" | "TO"})=>{
         setSearching(false)
     }
 
-    return <div className="flex">
-        <div className="text-white">
-            <button onClick={()=>{setSearching(false)}} type="button" className="relative mr-3 z-10 mx-auto block text-white hover:bg-[#141417] bg-[#343437] font-medium rounded-full text-sm p-2.5 rotate-90 hover:cursor-pointer">
-                <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+    return <div className="flex w-full">
+        <div className="text-white flex-shrink-0">
+            <button onClick={()=>{setSearching(false)}} type="button" className="relative mr-2 sm:mr-3 z-10 mx-auto block text-white hover:bg-[#141417] active:bg-[#141417] bg-[#343437] font-medium rounded-full text-sm p-2.5 sm:p-3 rotate-90 hover:cursor-pointer touch-manipulation">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1v12m0 0L1 9m4 4l4-4"/>
                 </svg>
             </button>
             </div>
-        <div className="bg-[#141417] min-w-[30vw]">
-            <input onChange={e=> setQuery(e.target.value)} type="text" placeholder="Search for the required token" className="text-white px-10 py-4 min-w-[30vw] text-2xl"/>
-            {tokens.map((token: any, index: number)=>{
-                return <div key={token.id || token.address || index} onClick={() => handleTokenSelect(token)}>
-                    <TokenCard token={token}></TokenCard>
-                </div>
-            })}
+        <div className="bg-[#141417] flex-1 rounded-lg sm:rounded-xl overflow-hidden">
+            <input onChange={e=> setQuery(e.target.value)} type="text" placeholder="Search for the required token" className="text-white px-4 sm:px-10 py-3 sm:py-4 w-full text-base sm:text-xl md:text-2xl bg-transparent border-none outline-none"/>
+            <div className="max-h-[60vh] overflow-y-auto">
+                {tokens.map((token: any, index: number)=>{
+                    return <div key={token.id || token.address || index} onClick={() => handleTokenSelect(token)}>
+                        <TokenCard token={token}></TokenCard>
+                    </div>
+                })}
+            </div>
         </div>
     </div>
 }

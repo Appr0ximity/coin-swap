@@ -163,27 +163,27 @@ export const Swap = ()=>{
         }
     }
 
-    return <div className="flex justify-center items-center min-h-[40vh]">
-        {!searching && <div className="text-white">
+    return <div className="flex justify-center items-center min-h-[40vh] px-4 sm:px-6 py-8">
+        {!searching && <div className="text-white w-full max-w-[600px]">
             <div onClick={searchFromToken} id="from">
                 <SwapInputCard fromOrTo="FROM"></SwapInputCard>
             </div>
-            <button onClick={flipTokens} type="button" className="relative z-10 -my-6 mx-auto block text-white bg-[#141417] hover:bg-[#343437] font-medium rounded-full text-sm p-2.5 hover:rotate-180 duration-200">
-                <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <button onClick={flipTokens} type="button" className="relative z-10 -my-6 mx-auto block text-white bg-[#141417] hover:bg-[#343437] active:bg-[#343437] font-medium rounded-full text-sm p-2.5 sm:p-3 hover:rotate-180 duration-200 touch-manipulation">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 1v12m0 0L1 9m4 4l4-4"/>
                 </svg>
             </button>
             <div onClick={searchToToken} id="to">
                 <SwapInputCard fromOrTo="TO"></SwapInputCard>
             </div>
-            <button onClick={swapCoins} disabled={buttonText != "Swap Tokens"} className="rounded-3xl font-semibold bg-white text-black py-3 px-14 mx-auto block mt-3 hover:bg-gray-300 hover:cursor-pointer disabled:bg-gray-400 duration-200 disabled:cursor-default">{buttonText}</button>
+            <button onClick={swapCoins} disabled={buttonText != "Swap Tokens"} className="rounded-3xl font-semibold bg-white text-black text-base sm:text-lg py-3 sm:py-4 px-10 sm:px-14 mx-auto block mt-4 sm:mt-6 hover:bg-gray-300 active:bg-gray-300 hover:cursor-pointer disabled:bg-gray-400 duration-200 disabled:cursor-default w-full sm:w-auto touch-manipulation min-h-[48px]">{buttonText}</button>
             {fromToken.amount > 0 && toToken.amount > 0 && (
-                <p className="text-center text-sm mt-4 text-gray-300">
+                <p className="text-center text-xs sm:text-sm mt-4 text-gray-300 px-2">
                     1 {fromToken.name} = {(toToken.amount/fromToken.amount).toFixed(6)} {toToken.name}
                 </p>
             )}
         </div>}
-        {searching && <div>
+        {searching && <div className="w-full max-w-[600px]">
             <SearchTokenCard fromOrTo={fromOrTo}></SearchTokenCard>
         </div>
         }
