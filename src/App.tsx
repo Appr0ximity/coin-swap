@@ -3,12 +3,81 @@ import { WalletDisconnectButton, WalletModalProvider, WalletMultiButton } from "
 import { clusterApiUrl } from "@solana/web3.js"
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { Swap } from "./components/Swap";
+import { BlockedPage } from "./components/BlockedPage";
+import { DisclaimerModal } from "./components/DisclaimerModal";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [isBlocked, setIsBlocked] = useState<boolean | null>(null);
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const checkLocation = async () => {
+      try {
+        // Check if user has already accepted disclaimer
+        const disclaimerAccepted = localStorage.getItem('disclaimerAccepted');
+        
+        // Try ipapi.co first
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        if (data.country_code === 'US' || data.country === 'United States') {
+          setIsBlocked(true);
+          setIsLoading(false);
+          return;
+        }
+        
+        // User is not from US
+        setIsBlocked(false);
+        
+        // Show disclaimer if not already accepted
+        if (!disclaimerAccepted) {
+          setShowDisclaimer(true);
+        }
+        
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Geolocation check failed:', error);
+        // If geolocation fails, show disclaimer to be safe
+        const disclaimerAccepted = localStorage.getItem('disclaimerAccepted');
+        setIsBlocked(false);
+        if (!disclaimerAccepted) {
+          setShowDisclaimer(true);
+        }
+        setIsLoading(false);
+      }
+    };
+
+    checkLocation();
+  }, []);
+
+  const handleAcceptDisclaimer = () => {
+    localStorage.setItem('disclaimerAccepted', 'true');
+    setShowDisclaimer(false);
+  };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white mb-4"></div>
+          <p className="text-white text-lg">Checking region...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If user is blocked (from US)
+  if (isBlocked) {
+    return <BlockedPage />;
+  }
 
   let endpoint = clusterApiUrl('mainnet-beta')
 
   return <div className="min-h-screen bg-black">
+    {showDisclaimer && <DisclaimerModal onAccept={handleAcceptDisclaimer} />}
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={[]}>
         <WalletModalProvider>
